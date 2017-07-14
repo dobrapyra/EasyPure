@@ -1,0 +1,2 @@
+# EasyPure
+EasyPure js framework
