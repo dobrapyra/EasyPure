@@ -72,8 +72,8 @@
 	Element.prototype.getOffset = function(relEl){
 		var el, offset = { l: 0, t: 0 };
 		for( el = this; el && el !== relEl; el = el.offsetParent ){
-			offset.l += el.offsetLeft;
-			offset.t += el.offsetTop;
+			offset.l += ( el.offsetLeft - el.scrollLeft );
+			offset.t += ( el.offsetTop - el.scrollTop );
 		}
 		return offset;
 	};
