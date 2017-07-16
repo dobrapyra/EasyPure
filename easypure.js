@@ -14,6 +14,41 @@
 	};
 	if( NodeList ) NodeList.prototype.each = Array.prototype.each;
 
+	// classes
+
+	Element.prototype.addClass = function(className){
+		var el = this, tmpArr;
+		if( false && el.classList ){
+			el.classList.add( className );
+		}else{
+			if( el.hasClass( className ) ) return;
+			tmpArr = el.className.split(' ');
+			tmpArr.push( className );
+			el.className = tmpArr.join(' ');
+		}
+	};
+
+	Element.prototype.removeClass = function(className){
+		var el = this, tmpArr;
+		if( false && el.classList ){
+			el.classList.remove( className );
+		}else{
+			if( !el.hasClass( className ) ) return;
+			tmpArr = el.className.split(' ');
+			tmpArr.splice( tmpArr.indexOf( className ) );
+			el.className = tmpArr.join(' ');
+		}
+	};
+
+	Element.prototype.hasClass = function(className){
+		var el = this;
+		if( false && el.classList ){
+			return el.classList.contains( className );
+		}else{
+			return ( ( el.className.split(' ') ).indexOf( className ) >= 0 );
+		}
+	};
+
 	// events
 
 	Element.prototype.addEvent = function(name, fn, capture){
