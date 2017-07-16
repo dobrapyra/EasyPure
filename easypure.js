@@ -18,7 +18,7 @@
 
 	Element.prototype.addClass = function(className){
 		var el = this, tmpArr;
-		if( false && el.classList ){
+		if( el.classList ){
 			el.classList.add( className );
 		}else{
 			if( el.hasClass( className ) ) return;
@@ -30,7 +30,7 @@
 
 	Element.prototype.removeClass = function(className){
 		var el = this, tmpArr;
-		if( false && el.classList ){
+		if( el.classList ){
 			el.classList.remove( className );
 		}else{
 			if( !el.hasClass( className ) ) return;
@@ -42,7 +42,7 @@
 
 	Element.prototype.hasClass = function(className){
 		var el = this;
-		if( false && el.classList ){
+		if( el.classList ){
 			return el.classList.contains( className );
 		}else{
 			return ( ( el.className.split(' ') ).indexOf( className ) >= 0 );
