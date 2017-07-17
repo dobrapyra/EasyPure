@@ -4,7 +4,7 @@
 	// each
 
 	Array.prototype.each = function(fn){
-		if( typeof fn != 'function' ) return;
+		if( typeof fn !== 'function' ) return;
 		var arr = this, i, l = arr.length, result;
 		for( i = 0; i < l; i++ ){
 			result = fn( arr[i], i );
@@ -52,7 +52,7 @@
 	// events
 
 	Element.prototype.addEvent = function(name, fn, capture){
-		if( typeof fn != 'function' ) return;
+		if( typeof fn !== 'function' ) return;
 		var el = this, eventObj, nameArr, eventName, eventId;
 		el._event = el._event || {};
 		nameArr = name.split('.'); eventName = nameArr[0]; eventId = nameArr[1];
