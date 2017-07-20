@@ -31,6 +31,12 @@
 			tmpArr.push( className );
 			el.className = tmpArr.join( ' ' );
 		}
+		return el;
+	};
+	NodeList.prototype.addClass = function( className ) {
+		this.each( function( el ) {
+			el.addClass( className );
+		} );
 	};
 
 	Element.prototype.removeClass = function( className ) {
@@ -43,6 +49,12 @@
 			tmpArr.splice( tmpArr.indexOf( className ) );
 			el.className = tmpArr.join( ' ' );
 		}
+		return el;
+	};
+	NodeList.prototype.removeClass = function( className ) {
+		this.each( function( el ) {
+			el.removeClass( className );
+		} );
 	};
 
 	Element.prototype.hasClass = function( className ) {
