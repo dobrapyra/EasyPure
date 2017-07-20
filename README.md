@@ -1,2 +1,2 @@
 # EasyPure
-EasyPure js framework
+EasyPure the most common functions library
