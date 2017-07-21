@@ -72,7 +72,7 @@
 		if( typeof fn !== 'function' ) return;
 		var el = this, eventObj, nameArr, eventName, eventId;
 		el._event = el._event || {};
-		nameArr = name.split( '.' ); eventName = nameArr[ 0 ]; eventId = nameArr[ 1 ];
+		nameArr = name.split( '.' ); eventName = nameArr[ 0 ] || '_'; eventId = nameArr[ 1 ];
 		if( eventId ) el.removeEvent( name, capture );
 		capture = !!capture;
 		eventObj = { id: eventId, fn: fn.bind( el ), capture: capture };
@@ -86,7 +86,7 @@
 	Element.prototype.removeEvent = function( name, capture ) {
 		var el = this, eventObj, nameArr, eventName, eventId, i, l, toRemove = [];
 		if( !el._event ) return;
-		nameArr = name.split( '.' ); eventName = nameArr[ 0 ]; eventId = nameArr[ 1 ];
+		nameArr = name.split( '.' ); eventName = nameArr[ 0 ] || '_'; eventId = nameArr[ 1 ];
 		if( !el._event[ eventName ] ) return;
 		capture = !!capture;
 		l = el._event[ eventName ].length;
@@ -108,7 +108,7 @@
 	Element.prototype.trigger = function( name, capture ) {
 		var el = this, eventObj, nameArr, eventName, eventId, i, l;
 		if( !el._event ) return;
-		nameArr = name.split( '.' ); eventName = nameArr[ 0 ]; eventId = nameArr[ 1 ];
+		nameArr = name.split( '.' ); eventName = nameArr[ 0 ] || '_'; eventId = nameArr[ 1 ];
 		if( !el._event[ eventName ] ) return;
 		capture = !!capture;
 		l = el._event[ eventName ].length;
