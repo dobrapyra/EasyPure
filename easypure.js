@@ -1,3 +1,12 @@
+/**
+ * EasyPure
+ * author: dobrapyra
+ * version: 2017-07-22
+ */
+
+( function() {
+  'use strict';
+
 if( !window.performance ) window.performance = {};
 window.performance.now = ( function() {
   return window.performance.now ||
@@ -224,3 +233,6 @@ window.scrollLeft = function() {
 window.scrollTop = function() {
   return window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 };
+
+
+} )();

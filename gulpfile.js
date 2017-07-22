@@ -11,8 +11,10 @@ var notify = require( 'gulp-notify' );
 gulp.task( 'buildES5', function() {
   return gulp
     .src( [
+      './src/head.js',
       './src/polyfills/**/*.js',
-      './src/functions/**/*.js'
+      './src/functions/**/*.js',
+      './src/foot.js'
     ] )
     .pipe( concat( 'easypure.js' ) )
     .pipe( gulp.dest( '.' ) )
