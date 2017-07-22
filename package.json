@@ -1,0 +1,29 @@
+{
+  "name": "easypure",
+  "version": "1.0.0",
+  "description": "EasyPure - the most common functions and polyfills",
+  "main": "easypure.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dobrapyra/EasyPure.git"
+  },
+  "keywords": [
+    "common functions",
+    "polyfills"
+  ],
+  "author": "dobrapyra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dobrapyra/EasyPure/issues"
+  },
+  "homepage": "https://github.com/dobrapyra/EasyPure#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-notify": "^3.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-uglify": "^3.0.0"
+  }
+}
