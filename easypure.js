@@ -1,13 +1,12 @@
 /**
  * EasyPure
  * author: dobrapyra
- * version: 2017-07-20
+ * version: 2017-07-22
  */
+
 ( function() {
   "use strict";
-
   /* polyfills */
-  /* ---------------------------------------------------------------- */
 
   /* array.indexOf */
 
@@ -113,10 +112,11 @@
       };
   } )();
 
-  /* ---------------------------------------------------------------- */
+} )();
 
+( function() {
+  "use strict";
   /* functions */
-  /* ---------------------------------------------------------------- */
 
   /* each */
 
@@ -255,7 +255,5 @@
   window.scrollLeft = function() {
     return window.scrollX || window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft;
   };
-
-  /* ---------------------------------------------------------------- */
 
 } )();
