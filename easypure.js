@@ -6,7 +6,119 @@
 ( function() {
 	"use strict";
 
-	// each
+	/* polyfills */
+	/* ---------------------------------------------------------------- */
+
+	/* array.indexOf */
+
+	if( !Array.prototype.indexOf ) {
+
+		Array.prototype.indexOf = function( el, from ) {
+
+			var arr = this, i, l = arr.length;
+
+			from = from || 0;
+
+			for( i = from; i < l; i++ ) {
+				if( arr[ i ] === el ) return i;
+			}
+
+			return -1;
+		};
+
+	}
+
+	/* Object.keys */
+
+	if( !Object.keys ) {
+
+		Object.keys = function( obj ) {
+
+			if( obj !== Object( obj ) ) throw new TypeError( 'Object.keys called on a non-object' );
+
+			var keysArr = [], key;
+
+			for( key in obj ) {
+				if( obj.hasOwnProperty( key ) ) keysArr.push( key );
+			}
+
+			return keysArr;
+		};
+
+	}
+
+	/* Object.assign */
+
+	if( !Object.assign ) {
+
+		Object.assign = function( obj, srcObjs ) {
+
+			if( obj !== Object( obj ) ) throw new TypeError( 'Object.keys called on a non-object' );
+
+			var resultObj, tmpSource, keysArr, i, l, j, k, nextKey;
+
+			resultObj = Object( obj );
+
+			l = arguments.length;
+			for( i = 1; i < l; i++ ) {
+				tmpSource = arguments[ i ];
+
+				if( !tmpSource ) continue;
+
+				keysArr = Object.keys( tmpSource );
+
+				k = keysArr.length;
+				for( j = 0; j < k; j++ ) {
+					tmpKey = keysArr[ j ];
+
+					resultObj[ tmpKey ] = tmpSource[ tmpKey ];
+				}
+			}
+
+			return resultObj;
+		};
+	}
+
+	/* requestAnimFrame */
+
+	window.requestAnimFrame = ( function() {
+		return window.requestAnimationFrame ||
+			window.webkitRequestAnimationFrame ||
+			window.mozRequestAnimationFrame ||
+			window.oRequestAnimationFrame ||
+			window.msRequestAnimationFrame ||
+			function( cb ) {
+				return window.setTimeout( cb, 1000 / 60 );
+			};
+	} )();
+
+	/* cancelRequestAnimFrame */
+
+	window.cancelRequestAnimFrame = ( function() {
+		return window.cancelAnimationFrame ||
+			window.webkitCancelRequestAnimationFrame ||
+			window.mozCancelRequestAnimationFrame ||
+			window.oCancelRequestAnimationFrame ||
+			window.msCancelRequestAnimationFrame ||
+			clearTimeout;
+	} )();
+
+	/* performance.now */
+
+	if( !window.performance ) window.performance = {};
+	window.performance.now = ( function() {
+		return window.performance.now ||
+			function() {
+				return new Date().getTime();
+			};
+	} )();
+
+	/* ---------------------------------------------------------------- */
+
+	/* functions */
+	/* ---------------------------------------------------------------- */
+
+	/* each */
 
 	Array.prototype.each = function( fn ) {
 		if( typeof fn !== 'function' ) return;
@@ -19,7 +131,7 @@
 	};
 	NodeList.prototype.each = Array.prototype.each;
 
-	// classes
+	/* classes */
 
 	Element.prototype.addClass = function( className ) {
 		var el = this, tmpArr;
@@ -66,7 +178,7 @@
 		}
 	};
 
-	// events
+	/* events */
 
 	Element.prototype.addEvent = function( name, fn, capture ) {
 		if( typeof fn !== 'function' ) return;
@@ -121,7 +233,7 @@
 	document.trigger = Element.prototype.trigger.bind( document );
 	window.trigger = Element.prototype.trigger.bind( window );
 
-	// others
+	/* others */
 
 	Element.prototype.getOffset = function( relEl, withScroll ) {
 		var el, offset = { l: 0, t: 0 };
@@ -143,5 +255,7 @@
 	window.scrollLeft = function() {
 		return window.scrollX || window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft;
 	};
+
+	/* ---------------------------------------------------------------- */
 
 } )();
