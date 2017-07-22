@@ -32,6 +32,17 @@ if( !Array.prototype.indexOf ) {
 
 }
 
+if( !Function.prototype.bind ) {
+
+  Function.prototype.bind = function( ctx ) {
+    var fn = this;
+    return function() {
+      fn.apply( ctx, arguments );
+    };
+  };
+
+}
+
 if( !Object.assign ) {
 
   Object.assign = function( obj, srcObjs ) {
