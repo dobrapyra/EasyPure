@@ -1,3 +1,7 @@
 window.scrollLeft = function() {
-  return window.scrollX || window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft;
+  return window.scrollX ||
+    window.pageXOffset ||
+    document.body.scrollLeft ||
+    document.documentElement.scrollLeft ||
+    0;
 };

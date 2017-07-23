@@ -1,5 +1,6 @@
 Element.prototype.hasClass = function( className ) {
   var el = this;
+
   if( el.classList ) {
     return el.classList.contains( className );
   } else {
