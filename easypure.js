@@ -35,9 +35,10 @@ if( !Array.prototype.indexOf ) {
 if( !Function.prototype.bind ) {
 
   Function.prototype.bind = function( ctx ) {
-    var fn = this;
+    var fn = this,
+      args = Array.prototype.slice.call( arguments, 1 );
     return function() {
-      fn.apply( ctx, arguments );
+      fn.apply( ctx, args );
     };
   };
 
@@ -181,6 +182,14 @@ NodeList.prototype.removeClass = function( className ) {
   } );
 };
 
+window.scrollLeft = function() {
+  return window.scrollX || window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft;
+};
+
+window.scrollTop = function() {
+  return window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+};
+
 Element.prototype.addEvent = function( name, fn, capture ) {
   if( typeof fn !== 'function' ) return;
   var el = this, eventObj, nameArr, eventName, eventId;
@@ -236,14 +245,6 @@ Element.prototype.trigger = function( name, capture ) {
 
 document.trigger = Element.prototype.trigger.bind( document );
 window.trigger = Element.prototype.trigger.bind( window );
-
-window.scrollLeft = function() {
-  return window.scrollX || window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft;
-};
-
-window.scrollTop = function() {
-  return window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-};
 
 
 } )();
