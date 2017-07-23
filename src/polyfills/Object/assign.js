@@ -26,4 +26,5 @@ if( !Object.assign ) {
 
     return resultObj;
   };
+
 }
