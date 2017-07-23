@@ -265,19 +265,29 @@ document.trigger = Element.prototype.trigger.bind( document );
 window.trigger = Element.prototype.trigger.bind( window );
 
 window.scrollLeft = function() {
-  return window.scrollX ||
-    window.pageXOffset ||
-    document.body.scrollLeft ||
-    document.documentElement.scrollLeft ||
-    0;
+  if( scrollVal ) {
+    document.body.scrollLeft = document.documentElement.scrollLeft = scrollVal;
+  } else {
+
+    return window.scrollX ||
+      window.pageXOffset ||
+      document.body.scrollLeft ||
+      document.documentElement.scrollLeft ||
+      0;
+  }
 };
 
-window.scrollTop = function() {
-  return window.scrollY ||
-    window.pageYOffset ||
-    document.body.scrollTop ||
-    document.documentElement.scrollTop ||
-    0;
+window.scrollTop = function( scrollVal ) {
+  if( scrollVal ) {
+    document.body.scrollTop = document.documentElement.scrollTop = scrollVal;
+  } else {
+
+    return window.scrollY ||
+      window.pageYOffset ||
+      document.body.scrollTop ||
+      document.documentElement.scrollTop ||
+      0;
+  }
 };
 
 
