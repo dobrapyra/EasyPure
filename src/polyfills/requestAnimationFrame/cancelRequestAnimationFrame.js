@@ -1,8 +1,12 @@
-window.cancelRequestAnimFrame = ( function() {
-  return window.cancelAnimationFrame ||
-    window.webkitCancelRequestAnimationFrame ||
-    window.mozCancelRequestAnimationFrame ||
-    window.oCancelRequestAnimationFrame ||
-    window.msCancelRequestAnimationFrame ||
-    clearTimeout;
-} )();
+if( !window.cancelAnimationFrame ) {
+
+  window.cancelAnimationFrame = ( function() {
+    return window.cancelAnimationFrame ||
+      window.webkitCancelRequestAnimationFrame ||
+      window.mozCancelRequestAnimationFrame ||
+      window.oCancelRequestAnimationFrame ||
+      window.msCancelRequestAnimationFrame ||
+      clearTimeout;
+  } )();
+
+}

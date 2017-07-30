@@ -4,8 +4,7 @@
  * version: 2017-07-22
  */
 
-( function() {
-  'use strict';
+'use strict';
 
 if( !window.performance ) window.performance = {};
 window.performance.now = ( function() {
@@ -31,6 +30,48 @@ if( !Array.prototype.indexOf ) {
   };
 
 }
+
+if( !Element.prototype.closest ) {
+
+  Element.prototype.closest = function( selector ) {
+    var el, matches = document.querySelectorAll( selector ),
+      mi, ml = matches.length;
+
+    for( el = this; el; el = el.parentElement ) {
+      for( mi = 0; mi < ml; mi++ ){
+        if( matches[mi] === el ){
+          return el;
+        }
+      }
+    }
+
+    return null;
+  };
+    
+}
+if( !Element.prototype.matches ) {
+
+  Element.prototype.matches = ( function() {
+    return Element.prototype.matches ||
+      Element.prototype.matchesSelector ||
+      Element.prototype.webkitMatchesSelector ||
+      Element.prototype.mozMatchesSelector ||
+      Element.prototype.oMatchesSelector ||
+      Element.prototype.msMatchesSelector ||
+      function( selector ) {
+        var elCount = 0, matches = document.querySelectorAll( selector ),
+          mi, ml = matches.length;
+
+        for( mi = 0; mi < ml; mi++ ) {
+          if( matches[ mi ] === this ) return true;
+        }
+
+        return false;
+      };
+  } )();
+
+}
+
 
 if( !Function.prototype.bind ) {
 
@@ -73,6 +114,7 @@ if( !Object.assign ) {
 
     return resultObj;
   };
+
 }
 
 if( !Object.keys ) {
@@ -92,25 +134,33 @@ if( !Object.keys ) {
 
 }
 
-window.cancelRequestAnimFrame = ( function() {
-  return window.cancelAnimationFrame ||
-    window.webkitCancelRequestAnimationFrame ||
-    window.mozCancelRequestAnimationFrame ||
-    window.oCancelRequestAnimationFrame ||
-    window.msCancelRequestAnimationFrame ||
-    clearTimeout;
-} )();
+if( !window.cancelAnimationFrame ) {
 
-window.requestAnimFrame = ( function() {
-  return window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.oRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
-    function( cb ) {
-      return window.setTimeout( cb, 1000 / 60 );
-    };
-} )();
+  window.cancelAnimationFrame = ( function() {
+    return window.cancelAnimationFrame ||
+      window.webkitCancelRequestAnimationFrame ||
+      window.mozCancelRequestAnimationFrame ||
+      window.oCancelRequestAnimationFrame ||
+      window.msCancelRequestAnimationFrame ||
+      clearTimeout;
+  } )();
+
+}
+
+if( !window.requestAnimationFrame ) {
+
+  window.requestAnimationFrame = ( function() {
+    return window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      window.msRequestAnimationFrame ||
+      function( cb ) {
+        return window.setTimeout( cb, 1000 / 60 );
+      };
+  } )();
+
+}
 
 Array.prototype.each = function( fn ) {
   if( typeof fn !== 'function' ) return;
@@ -290,5 +340,3 @@ window.scrollTop = function( scrollVal ) {
   }
 };
 
-
-} )();
