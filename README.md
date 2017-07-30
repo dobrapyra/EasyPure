@@ -6,6 +6,8 @@ EasyPure the most common polyfills & functions library
 * Function.prototype.bind
 * Object.keys
 * Object.assign
+* Element.closest
+* Element.matches
 * performance.now
 * requestAnimationFrame
 * cancelRequestAnimationFrame
