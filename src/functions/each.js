@@ -8,3 +8,4 @@ Array.prototype.each = function( fn ) {
   }
 };
 NodeList.prototype.each = Array.prototype.each;
+HTMLCollection.prototype.each = Array.prototype.each;
