@@ -1,21 +1,22 @@
 /**
  * EasyPure
  * author: dobrapyra
- * version: 2017-07-22
+ * version: 2017-08-17
  */
 
 'use strict';
 
 if( !window.performance ) window.performance = {};
-window.performance.now = ( function() {
-  return window.performance.now ||
-    function() {
-      return new Date().getTime();
-    };
-} )();
+if( !window.performance.now ){
+  window.performance.now = ( function() {
+    return window.performance.now ||
+      function() {
+        return new Date().getTime();
+      };
+  } )();
+}
 
 if( !Array.prototype.indexOf ) {
-
   Array.prototype.indexOf = function( el, from ) {
 
     var arr = this, i, l = arr.length;
@@ -28,18 +29,16 @@ if( !Array.prototype.indexOf ) {
 
     return -1;
   };
-
 }
 
 if( !Element.prototype.closest ) {
-
   Element.prototype.closest = function( selector ) {
     var el, matches = document.querySelectorAll( selector ),
       mi, ml = matches.length;
 
     for( el = this; el; el = el.parentElement ) {
-      for( mi = 0; mi < ml; mi++ ){
-        if( matches[mi] === el ){
+      for( mi = 0; mi < ml; mi++ ) {
+        if( matches[ mi ] === el ) {
           return el;
         }
       }
@@ -47,10 +46,8 @@ if( !Element.prototype.closest ) {
 
     return null;
   };
-    
 }
 if( !Element.prototype.matches ) {
-
   Element.prototype.matches = ( function() {
     return Element.prototype.matches ||
       Element.prototype.matchesSelector ||
@@ -59,7 +56,7 @@ if( !Element.prototype.matches ) {
       Element.prototype.oMatchesSelector ||
       Element.prototype.msMatchesSelector ||
       function( selector ) {
-        var elCount = 0, matches = document.querySelectorAll( selector ),
+        var matches = document.querySelectorAll( selector ),
           mi, ml = matches.length;
 
         for( mi = 0; mi < ml; mi++ ) {
@@ -69,12 +66,10 @@ if( !Element.prototype.matches ) {
         return false;
       };
   } )();
-
 }
 
 
 if( !Function.prototype.bind ) {
-
   Function.prototype.bind = function( ctx ) {
 
     var fn = this, args = Array.prototype.slice.call( arguments, 1 );
@@ -83,16 +78,14 @@ if( !Function.prototype.bind ) {
       fn.apply( ctx, args );
     };
   };
-
 }
 
 if( !Object.assign ) {
-
-  Object.assign = function( obj, srcObjs ) {
+  Object.assign = function( obj/*, srcObjs*/ ) {
 
     if( obj !== Object( obj ) ) throw new TypeError( 'Object.keys called on a non-object' );
 
-    var resultObj, tmpSource, keysArr, i, l, j, k, nextKey;
+    var resultObj, tmpSource, keysArr, i, l, j, k, tmpKey;
 
     resultObj = Object( obj );
 
@@ -114,11 +107,9 @@ if( !Object.assign ) {
 
     return resultObj;
   };
-
 }
 
 if( !Object.keys ) {
-
   Object.keys = function( obj ) {
 
     if( obj !== Object( obj ) ) throw new TypeError( 'Object.keys called on a non-object' );
@@ -131,11 +122,9 @@ if( !Object.keys ) {
 
     return keysArr;
   };
-
 }
 
 if( !window.cancelAnimationFrame ) {
-
   window.cancelAnimationFrame = ( function() {
     return window.cancelAnimationFrame ||
       window.webkitCancelRequestAnimationFrame ||
@@ -144,11 +133,9 @@ if( !window.cancelAnimationFrame ) {
       window.msCancelRequestAnimationFrame ||
       clearTimeout;
   } )();
-
 }
 
 if( !window.requestAnimationFrame ) {
-
   window.requestAnimationFrame = ( function() {
     return window.requestAnimationFrame ||
       window.webkitRequestAnimationFrame ||
@@ -159,7 +146,6 @@ if( !window.requestAnimationFrame ) {
         return window.setTimeout( cb, 1000 / 60 );
       };
   } )();
-
 }
 
 Array.prototype.each = function( fn ) {
@@ -207,7 +193,9 @@ NodeList.prototype.addClass = function( className ) {
   this.each( function( el ) {
     el.addClass( className );
   } );
+  return this;
 };
+HTMLCollection.prototype.addClass = NodeList.prototype.addClass;
 
 Element.prototype.hasClass = function( className ) {
   var el = this;
@@ -239,7 +227,10 @@ NodeList.prototype.removeClass = function( className ) {
   this.each( function( el ) {
     el.removeClass( className );
   } );
+
+  return this;
 };
+HTMLCollection.prototype.addClass = NodeList.prototype.addClass;
 
 Element.prototype.addEvent = function( name, fn, capture ) {
   if( typeof fn !== 'function' ) return;
@@ -315,7 +306,7 @@ Element.prototype.trigger = function( name, capture ) {
 document.trigger = Element.prototype.trigger.bind( document );
 window.trigger = Element.prototype.trigger.bind( window );
 
-window.scrollLeft = function() {
+window.scrollLeft = function( scrollVal ) {
   if( scrollVal ) {
     document.body.scrollLeft = document.documentElement.scrollLeft = scrollVal;
   } else {
