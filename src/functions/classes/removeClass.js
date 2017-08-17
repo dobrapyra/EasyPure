@@ -21,4 +21,4 @@ NodeList.prototype.removeClass = function( className ) {
 
   return this;
 };
-HTMLCollection.prototype.addClass = NodeList.prototype.addClass;
+HTMLCollection.prototype.removeClass = NodeList.prototype.removeClass;

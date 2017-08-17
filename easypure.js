@@ -230,7 +230,7 @@ NodeList.prototype.removeClass = function( className ) {
 
   return this;
 };
-HTMLCollection.prototype.addClass = NodeList.prototype.addClass;
+HTMLCollection.prototype.removeClass = NodeList.prototype.removeClass;
 
 Element.prototype.addEvent = function( name, fn, capture ) {
   if( typeof fn !== 'function' ) return;
