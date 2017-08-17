@@ -1,5 +1,4 @@
 if( !Element.prototype.matches ) {
-
   Element.prototype.matches = ( function() {
     return Element.prototype.matches ||
       Element.prototype.matchesSelector ||
@@ -8,7 +7,7 @@ if( !Element.prototype.matches ) {
       Element.prototype.oMatchesSelector ||
       Element.prototype.msMatchesSelector ||
       function( selector ) {
-        var elCount = 0, matches = document.querySelectorAll( selector ),
+        var matches = document.querySelectorAll( selector ),
           mi, ml = matches.length;
 
         for( mi = 0; mi < ml; mi++ ) {
@@ -18,6 +17,5 @@ if( !Element.prototype.matches ) {
         return false;
       };
   } )();
-
 }
 

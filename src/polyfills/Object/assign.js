@@ -1,10 +1,9 @@
 if( !Object.assign ) {
-
-  Object.assign = function( obj, srcObjs ) {
+  Object.assign = function( obj/*, srcObjs*/ ) {
 
     if( obj !== Object( obj ) ) throw new TypeError( 'Object.keys called on a non-object' );
 
-    var resultObj, tmpSource, keysArr, i, l, j, k, nextKey;
+    var resultObj, tmpSource, keysArr, i, l, j, k, tmpKey;
 
     resultObj = Object( obj );
 
@@ -26,5 +25,4 @@ if( !Object.assign ) {
 
     return resultObj;
   };
-
 }

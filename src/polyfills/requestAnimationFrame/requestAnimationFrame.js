@@ -1,5 +1,4 @@
 if( !window.requestAnimationFrame ) {
-
   window.requestAnimationFrame = ( function() {
     return window.requestAnimationFrame ||
       window.webkitRequestAnimationFrame ||
@@ -10,5 +9,4 @@ if( !window.requestAnimationFrame ) {
         return window.setTimeout( cb, 1000 / 60 );
       };
   } )();
-
 }

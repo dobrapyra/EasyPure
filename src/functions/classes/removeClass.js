@@ -18,4 +18,7 @@ NodeList.prototype.removeClass = function( className ) {
   this.each( function( el ) {
     el.removeClass( className );
   } );
+
+  return this;
 };
+HTMLCollection.prototype.addClass = NodeList.prototype.addClass;

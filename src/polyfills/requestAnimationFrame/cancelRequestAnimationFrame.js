@@ -1,5 +1,4 @@
 if( !window.cancelAnimationFrame ) {
-
   window.cancelAnimationFrame = ( function() {
     return window.cancelAnimationFrame ||
       window.webkitCancelRequestAnimationFrame ||
@@ -8,5 +7,4 @@ if( !window.cancelAnimationFrame ) {
       window.msCancelRequestAnimationFrame ||
       clearTimeout;
   } )();
-
 }

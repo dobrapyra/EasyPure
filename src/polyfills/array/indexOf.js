@@ -1,5 +1,4 @@
 if( !Array.prototype.indexOf ) {
-
   Array.prototype.indexOf = function( el, from ) {
 
     var arr = this, i, l = arr.length;
@@ -12,5 +11,4 @@ if( !Array.prototype.indexOf ) {
 
     return -1;
   };
-
 }

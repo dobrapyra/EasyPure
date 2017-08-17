@@ -18,4 +18,6 @@ NodeList.prototype.addClass = function( className ) {
   this.each( function( el ) {
     el.addClass( className );
   } );
+  return this;
 };
+HTMLCollection.prototype.addClass = NodeList.prototype.addClass;

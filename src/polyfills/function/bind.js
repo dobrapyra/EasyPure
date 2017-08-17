@@ -1,5 +1,4 @@
 if( !Function.prototype.bind ) {
-
   Function.prototype.bind = function( ctx ) {
 
     var fn = this, args = Array.prototype.slice.call( arguments, 1 );
@@ -8,5 +7,4 @@ if( !Function.prototype.bind ) {
       fn.apply( ctx, args );
     };
   };
-
 }
