@@ -13,7 +13,11 @@ Element.prototype.trigger = function( name, capture ) {
 
   for( i = 0; i < l; i++ ) {
     eventObj = el._event[ eventName ][ i ];
-    if( eventObj.capture === capture && ( !eventId || eventObj.id === eventId ) ) eventObj.fn();
+    if( eventObj.capture === capture && ( !eventId || eventObj.id === eventId ) ) {
+      eventObj.fn( {
+        currentTarget: el
+      } );
+    }
   }
 };
 
