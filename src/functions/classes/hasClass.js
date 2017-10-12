@@ -1,3 +1,4 @@
+/* hasClass */
 Element.prototype.hasClass = function( className ) {
   var el = this;
 

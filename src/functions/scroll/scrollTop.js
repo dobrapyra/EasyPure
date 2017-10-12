@@ -1,3 +1,4 @@
+/* scrollTop */
 window.scrollTop = function( scrollVal ) {
   if( scrollVal ) {
     document.body.scrollTop = document.documentElement.scrollTop = scrollVal;

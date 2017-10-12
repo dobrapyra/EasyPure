@@ -1,10 +1,8 @@
 /**
  * EasyPure
  * author: dobrapyra
- * version: 2017-08-17
+ * version: 2017-10-12
  */
-
-'use strict';
 
 if( !window.performance ) window.performance = {};
 if( !window.performance.now ){
@@ -28,6 +26,17 @@ if( !Array.prototype.indexOf ) {
     }
 
     return -1;
+  };
+}
+
+if( !Function.prototype.bind ) {
+  Function.prototype.bind = function( ctx ) {
+
+    var fn = this, args = Array.prototype.slice.call( arguments, 1 );
+
+    return function() {
+      fn.apply( ctx, args );
+    };
   };
 }
 
@@ -68,17 +77,6 @@ if( !Element.prototype.matches ) {
   } )();
 }
 
-
-if( !Function.prototype.bind ) {
-  Function.prototype.bind = function( ctx ) {
-
-    var fn = this, args = Array.prototype.slice.call( arguments, 1 );
-
-    return function() {
-      fn.apply( ctx, args );
-    };
-  };
-}
 
 if( !Object.assign ) {
   Object.assign = function( obj/*, srcObjs*/ ) {
@@ -148,6 +146,7 @@ if( !window.requestAnimationFrame ) {
   } )();
 }
 
+/* each */
 Array.prototype.each = function( fn ) {
   if( typeof fn !== 'function' ) return;
   var arr = this, i, l = arr.length, result;
@@ -160,6 +159,7 @@ Array.prototype.each = function( fn ) {
 NodeList.prototype.each = Array.prototype.each;
 HTMLCollection.prototype.each = Array.prototype.each;
 
+/* getOffset */
 Element.prototype.getOffset = function( relEl, withScroll ) {
   var el, offset = { l: 0, t: 0 };
   for( el = this; el && el !== relEl; el = el.offsetParent ) {
@@ -173,6 +173,9 @@ Element.prototype.getOffset = function( relEl, withScroll ) {
   return offset;
 };
 
+/* addClass
+ * requires hasClass
+*/
 Element.prototype.addClass = function( className ) {
   var el = this, tmpArr;
 
@@ -197,6 +200,7 @@ NodeList.prototype.addClass = function( className ) {
 };
 HTMLCollection.prototype.addClass = NodeList.prototype.addClass;
 
+/* hasClass */
 Element.prototype.hasClass = function( className ) {
   var el = this;
 
@@ -207,6 +211,9 @@ Element.prototype.hasClass = function( className ) {
   }
 };
 
+/* removeClass
+ * requires hasClass
+*/
 Element.prototype.removeClass = function( className ) {
   var el = this, tmpArr;
 
@@ -232,6 +239,9 @@ NodeList.prototype.removeClass = function( className ) {
 };
 HTMLCollection.prototype.removeClass = NodeList.prototype.removeClass;
 
+/* addEvent
+ * requires removeEvent
+*/
 Element.prototype.addEvent = function( name, fn, capture ) {
   if( typeof fn !== 'function' ) return;
 
@@ -255,6 +265,7 @@ Element.prototype.addEvent = function( name, fn, capture ) {
 document.addEvent = Element.prototype.addEvent.bind( document );
 window.addEvent = Element.prototype.addEvent.bind( window );
 
+/* removeEvent */
 Element.prototype.removeEvent = function( name, capture ) {
   var el = this, eventObj, nameArr, eventName, eventId, i, l, toRemove = [];
   if( !el._event ) return;
@@ -285,6 +296,7 @@ Element.prototype.removeEvent = function( name, capture ) {
 document.removeEvent = Element.prototype.removeEvent.bind( document );
 window.removeEvent = Element.prototype.removeEvent.bind( window );
 
+/* trigger */
 Element.prototype.trigger = function( name, capture ) {
   var el = this, eventObj, nameArr, eventName, eventId, i, l;
   if( !el._event ) return;
@@ -306,6 +318,7 @@ Element.prototype.trigger = function( name, capture ) {
 document.trigger = Element.prototype.trigger.bind( document );
 window.trigger = Element.prototype.trigger.bind( window );
 
+/* scrollLeft */
 window.scrollLeft = function( scrollVal ) {
   if( scrollVal ) {
     document.body.scrollLeft = document.documentElement.scrollLeft = scrollVal;
@@ -319,6 +332,7 @@ window.scrollLeft = function( scrollVal ) {
   }
 };
 
+/* scrollTop */
 window.scrollTop = function( scrollVal ) {
   if( scrollVal ) {
     document.body.scrollTop = document.documentElement.scrollTop = scrollVal;
@@ -331,4 +345,3 @@ window.scrollTop = function( scrollVal ) {
       0;
   }
 };
-

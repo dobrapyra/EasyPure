@@ -1,7 +1,5 @@
 /**
  * EasyPure
  * author: dobrapyra
- * version: 2017-08-17
+ * version: 2017-10-12
  */
-
-'use strict';

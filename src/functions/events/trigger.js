@@ -1,3 +1,4 @@
+/* trigger */
 Element.prototype.trigger = function( name, capture ) {
   var el = this, eventObj, nameArr, eventName, eventId, i, l;
   if( !el._event ) return;

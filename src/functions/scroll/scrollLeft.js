@@ -1,3 +1,4 @@
+/* scrollLeft */
 window.scrollLeft = function( scrollVal ) {
   if( scrollVal ) {
     document.body.scrollLeft = document.documentElement.scrollLeft = scrollVal;

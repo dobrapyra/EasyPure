@@ -1,3 +1,6 @@
+/* addClass
+ * requires hasClass
+*/
 Element.prototype.addClass = function( className ) {
   var el = this, tmpArr;
 

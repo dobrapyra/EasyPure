@@ -1,3 +1,4 @@
+/* each */
 Array.prototype.each = function( fn ) {
   if( typeof fn !== 'function' ) return;
   var arr = this, i, l = arr.length, result;

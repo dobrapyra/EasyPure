@@ -1,3 +1,4 @@
+/* getOffset */
 Element.prototype.getOffset = function( relEl, withScroll ) {
   var el, offset = { l: 0, t: 0 };
   for( el = this; el && el !== relEl; el = el.offsetParent ) {

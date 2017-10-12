@@ -1,3 +1,6 @@
+/* removeClass
+ * requires hasClass
+*/
 Element.prototype.removeClass = function( className ) {
   var el = this, tmpArr;
 

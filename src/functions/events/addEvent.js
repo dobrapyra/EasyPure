@@ -1,3 +1,6 @@
+/* addEvent
+ * requires removeEvent
+*/
 Element.prototype.addEvent = function( name, fn, capture ) {
   if( typeof fn !== 'function' ) return;
 

@@ -1,3 +1,4 @@
+/* removeEvent */
 Element.prototype.removeEvent = function( name, capture ) {
   var el = this, eventObj, nameArr, eventName, eventId, i, l, toRemove = [];
   if( !el._event ) return;
