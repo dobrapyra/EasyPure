@@ -15,9 +15,9 @@ EasyPure the most common polyfills & functions library
 ## Functions
 * each
 * getOffset
+* hasClass
 * addClass
 * removeClass
-* hasClass
 * addEvent
 * removeEvent
 * trigger
