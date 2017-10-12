@@ -29,17 +29,6 @@ if( !Array.prototype.indexOf ) {
   };
 }
 
-if( !Function.prototype.bind ) {
-  Function.prototype.bind = function( ctx ) {
-
-    var fn = this, args = Array.prototype.slice.call( arguments, 1 );
-
-    return function() {
-      fn.apply( ctx, args );
-    };
-  };
-}
-
 if( !Element.prototype.closest ) {
   Element.prototype.closest = function( selector ) {
     var el, matches = document.querySelectorAll( selector ),
@@ -77,6 +66,17 @@ if( !Element.prototype.matches ) {
   } )();
 }
 
+
+if( !Function.prototype.bind ) {
+  Function.prototype.bind = function( ctx ) {
+
+    var fn = this, args = Array.prototype.slice.call( arguments, 1 );
+
+    return function() {
+      fn.apply( ctx, args );
+    };
+  };
+}
 
 if( !Object.assign ) {
   Object.assign = function( obj/*, srcObjs*/ ) {
@@ -239,6 +239,34 @@ NodeList.prototype.removeClass = function( className ) {
 };
 HTMLCollection.prototype.removeClass = NodeList.prototype.removeClass;
 
+/* scrollLeft */
+window.scrollLeft = function( scrollVal ) {
+  if( scrollVal ) {
+    document.body.scrollLeft = document.documentElement.scrollLeft = scrollVal;
+  } else {
+
+    return window.scrollX ||
+      window.pageXOffset ||
+      document.body.scrollLeft ||
+      document.documentElement.scrollLeft ||
+      0;
+  }
+};
+
+/* scrollTop */
+window.scrollTop = function( scrollVal ) {
+  if( scrollVal ) {
+    document.body.scrollTop = document.documentElement.scrollTop = scrollVal;
+  } else {
+
+    return window.scrollY ||
+      window.pageYOffset ||
+      document.body.scrollTop ||
+      document.documentElement.scrollTop ||
+      0;
+  }
+};
+
 /* addEvent
  * requires removeEvent
 */
@@ -311,37 +339,13 @@ Element.prototype.trigger = function( name, capture ) {
 
   for( i = 0; i < l; i++ ) {
     eventObj = el._event[ eventName ][ i ];
-    if( eventObj.capture === capture && ( !eventId || eventObj.id === eventId ) ) eventObj.fn();
+    if( eventObj.capture === capture && ( !eventId || eventObj.id === eventId ) ) {
+      eventObj.fn( {
+        currentTarget: el
+      } );
+    }
   }
 };
 
 document.trigger = Element.prototype.trigger.bind( document );
 window.trigger = Element.prototype.trigger.bind( window );
-
-/* scrollLeft */
-window.scrollLeft = function( scrollVal ) {
-  if( scrollVal ) {
-    document.body.scrollLeft = document.documentElement.scrollLeft = scrollVal;
-  } else {
-
-    return window.scrollX ||
-      window.pageXOffset ||
-      document.body.scrollLeft ||
-      document.documentElement.scrollLeft ||
-      0;
-  }
-};
-
-/* scrollTop */
-window.scrollTop = function( scrollVal ) {
-  if( scrollVal ) {
-    document.body.scrollTop = document.documentElement.scrollTop = scrollVal;
-  } else {
-
-    return window.scrollY ||
-      window.pageYOffset ||
-      document.body.scrollTop ||
-      document.documentElement.scrollTop ||
-      0;
-  }
-};
