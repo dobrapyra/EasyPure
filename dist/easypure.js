@@ -239,34 +239,6 @@ NodeList.prototype.removeClass = function( className ) {
 };
 HTMLCollection.prototype.removeClass = NodeList.prototype.removeClass;
 
-/* scrollLeft */
-window.scrollLeft = function( scrollVal ) {
-  if( scrollVal ) {
-    document.body.scrollLeft = document.documentElement.scrollLeft = scrollVal;
-  } else {
-
-    return window.scrollX ||
-      window.pageXOffset ||
-      document.body.scrollLeft ||
-      document.documentElement.scrollLeft ||
-      0;
-  }
-};
-
-/* scrollTop */
-window.scrollTop = function( scrollVal ) {
-  if( scrollVal ) {
-    document.body.scrollTop = document.documentElement.scrollTop = scrollVal;
-  } else {
-
-    return window.scrollY ||
-      window.pageYOffset ||
-      document.body.scrollTop ||
-      document.documentElement.scrollTop ||
-      0;
-  }
-};
-
 /* addEvent
  * requires removeEvent
 */
@@ -349,3 +321,31 @@ Element.prototype.trigger = function( name, capture ) {
 
 document.trigger = Element.prototype.trigger.bind( document );
 window.trigger = Element.prototype.trigger.bind( window );
+
+/* scrollLeft */
+window.scrollLeft = function( scrollVal ) {
+  if( scrollVal ) {
+    document.body.scrollLeft = document.documentElement.scrollLeft = scrollVal;
+  } else {
+
+    return window.scrollX ||
+      window.pageXOffset ||
+      document.body.scrollLeft ||
+      document.documentElement.scrollLeft ||
+      0;
+  }
+};
+
+/* scrollTop */
+window.scrollTop = function( scrollVal ) {
+  if( scrollVal ) {
+    document.body.scrollTop = document.documentElement.scrollTop = scrollVal;
+  } else {
+
+    return window.scrollY ||
+      window.pageYOffset ||
+      document.body.scrollTop ||
+      document.documentElement.scrollTop ||
+      0;
+  }
+};

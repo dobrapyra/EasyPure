@@ -1,18 +1,17 @@
-var gulp = require( 'gulp' );
-var concat = require( 'gulp-concat' );
-var rename = require( 'gulp-rename' );
-var stripdebug = require( 'gulp-strip-debug' );
-var uglify = require( 'gulp-uglify' );
-var notify = require( 'gulp-notify' );
+let gulp = require( 'gulp' ),
+  concat = require( 'gulp-concat' ),
+  rename = require( 'gulp-rename' ),
+  stripdebug = require( 'gulp-strip-debug' ),
+  uglify = require( 'gulp-uglify' ),
+  notify = require( 'gulp-notify' )
 
-var notifyLogOnly = notify.withReporter( function( options, callback ) {
-  console.log( "Message:", options.message );
-  callback();
+let notifyLogOnly = notify.withReporter( ( options, callback ) => {
+  console.log( "Message:", options.message )
+  callback()
 } );
+notifyLogOnly.logLevel( 1 )
 
-notifyLogOnly.logLevel( 1 );
-
-gulp.task( 'buildES5', function() {
+gulp.task( 'buildES5', () => {
   return gulp
     .src( [
       './src/info.js',
@@ -20,15 +19,15 @@ gulp.task( 'buildES5', function() {
       './src/functions/**/*.js'
     ] )
     .pipe( concat( 'easypure.js' ) )
-    .pipe( gulp.dest( '.' ) )
+    .pipe( gulp.dest( './dist' ) )
     .pipe( notifyLogOnly( { message: 'ES5 build done!' } ) )
     .pipe( rename( 'easypure.min.js' ) )
     .pipe( stripdebug() )
     .pipe( uglify() )
-    .pipe( gulp.dest( '.' ) )
+    .pipe( gulp.dest( './dist' ) )
     .pipe( notifyLogOnly( { message: 'ES5 min build done!' } ) )
-    .pipe( notify( { message: 'ES5 all build done!' } ) );
-} );
+    .pipe( notify( { message: 'ES5 all build done!' } ) )
+} )
 
 // default tasks
-gulp.task( 'default', [ 'buildES5' ] );
+gulp.task( 'default', [ 'buildES5' ] )
