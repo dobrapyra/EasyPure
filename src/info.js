@@ -1,5 +1,6 @@
-/**
+/*!
  * EasyPure
+ * version: 2018-05-10
  * author: dobrapyra
- * version: 2017-10-12
+ * url: https://github.com/dobrapyra/EasyPure
  */

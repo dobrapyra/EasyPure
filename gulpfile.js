@@ -23,7 +23,11 @@ gulp.task( 'buildES5', () => {
     .pipe( notifyLogOnly( { message: 'ES5 build done!' } ) )
     .pipe( rename( 'easypure.min.js' ) )
     .pipe( stripdebug() )
-    .pipe( uglify() )
+    .pipe( uglify( {
+      output: {
+        comments: `/^!/`
+      }
+    } ) )
     .pipe( gulp.dest( './dist' ) )
     .pipe( notifyLogOnly( { message: 'ES5 min build done!' } ) )
     .pipe( notify( { message: 'ES5 all build done!' } ) )

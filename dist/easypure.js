@@ -1,7 +1,8 @@
-/**
+/*!
  * EasyPure
+ * version: 2018-05-10
  * author: dobrapyra
- * version: 2017-10-12
+ * url: https://github.com/dobrapyra/EasyPure
  */
 
 if( !window.performance ) window.performance = {};
@@ -29,43 +30,16 @@ if( !Array.prototype.indexOf ) {
   };
 }
 
-if( !Element.prototype.closest ) {
-  Element.prototype.closest = function( selector ) {
-    var el, matches = document.querySelectorAll( selector ),
-      mi, ml = matches.length;
+if( !Function.prototype.bind ) {
+  Function.prototype.bind = function( ctx ) {
 
-    for( el = this; el; el = el.parentElement ) {
-      for( mi = 0; mi < ml; mi++ ) {
-        if( matches[ mi ] === el ) {
-          return el;
-        }
-      }
-    }
+    var fn = this, args = Array.prototype.slice.call( arguments, 1 );
 
-    return null;
+    return function() {
+      fn.apply( ctx, args );
+    };
   };
 }
-if( !Element.prototype.matches ) {
-  Element.prototype.matches = ( function() {
-    return Element.prototype.matches ||
-      Element.prototype.matchesSelector ||
-      Element.prototype.webkitMatchesSelector ||
-      Element.prototype.mozMatchesSelector ||
-      Element.prototype.oMatchesSelector ||
-      Element.prototype.msMatchesSelector ||
-      function( selector ) {
-        var matches = document.querySelectorAll( selector ),
-          mi, ml = matches.length;
-
-        for( mi = 0; mi < ml; mi++ ) {
-          if( matches[ mi ] === this ) return true;
-        }
-
-        return false;
-      };
-  } )();
-}
-
 
 if( !Object.assign ) {
   Object.assign = function( obj/*, srcObjs*/ ) {
@@ -111,16 +85,43 @@ if( !Object.keys ) {
   };
 }
 
-if( !Function.prototype.bind ) {
-  Function.prototype.bind = function( ctx ) {
+if( !Element.prototype.closest ) {
+  Element.prototype.closest = function( selector ) {
+    var el, matches = document.querySelectorAll( selector ),
+      mi, ml = matches.length;
 
-    var fn = this, args = Array.prototype.slice.call( arguments, 1 );
+    for( el = this; el; el = el.parentElement ) {
+      for( mi = 0; mi < ml; mi++ ) {
+        if( matches[ mi ] === el ) {
+          return el;
+        }
+      }
+    }
 
-    return function() {
-      fn.apply( ctx, args );
-    };
+    return null;
   };
 }
+if( !Element.prototype.matches ) {
+  Element.prototype.matches = ( function() {
+    return Element.prototype.matches ||
+      Element.prototype.matchesSelector ||
+      Element.prototype.webkitMatchesSelector ||
+      Element.prototype.mozMatchesSelector ||
+      Element.prototype.oMatchesSelector ||
+      Element.prototype.msMatchesSelector ||
+      function( selector ) {
+        var matches = document.querySelectorAll( selector ),
+          mi, ml = matches.length;
+
+        for( mi = 0; mi < ml; mi++ ) {
+          if( matches[ mi ] === this ) return true;
+        }
+
+        return false;
+      };
+  } )();
+}
+
 
 if( !window.cancelAnimationFrame ) {
   window.cancelAnimationFrame = ( function() {
@@ -239,6 +240,34 @@ NodeList.prototype.removeClass = function( className ) {
 };
 HTMLCollection.prototype.removeClass = NodeList.prototype.removeClass;
 
+/* scrollLeft */
+window.scrollLeft = function( scrollVal ) {
+  if( scrollVal ) {
+    document.body.scrollLeft = document.documentElement.scrollLeft = scrollVal;
+  } else {
+
+    return window.scrollX ||
+      window.pageXOffset ||
+      document.body.scrollLeft ||
+      document.documentElement.scrollLeft ||
+      0;
+  }
+};
+
+/* scrollTop */
+window.scrollTop = function( scrollVal ) {
+  if( scrollVal ) {
+    document.body.scrollTop = document.documentElement.scrollTop = scrollVal;
+  } else {
+
+    return window.scrollY ||
+      window.pageYOffset ||
+      document.body.scrollTop ||
+      document.documentElement.scrollTop ||
+      0;
+  }
+};
+
 /* addEvent
  * requires removeEvent
 */
@@ -321,31 +350,3 @@ Element.prototype.trigger = function( name, capture ) {
 
 document.trigger = Element.prototype.trigger.bind( document );
 window.trigger = Element.prototype.trigger.bind( window );
-
-/* scrollLeft */
-window.scrollLeft = function( scrollVal ) {
-  if( scrollVal ) {
-    document.body.scrollLeft = document.documentElement.scrollLeft = scrollVal;
-  } else {
-
-    return window.scrollX ||
-      window.pageXOffset ||
-      document.body.scrollLeft ||
-      document.documentElement.scrollLeft ||
-      0;
-  }
-};
-
-/* scrollTop */
-window.scrollTop = function( scrollVal ) {
-  if( scrollVal ) {
-    document.body.scrollTop = document.documentElement.scrollTop = scrollVal;
-  } else {
-
-    return window.scrollY ||
-      window.pageYOffset ||
-      document.body.scrollTop ||
-      document.documentElement.scrollTop ||
-      0;
-  }
-};
