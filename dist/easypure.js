@@ -67,21 +67,10 @@ if( !Element.prototype.matches ) {
 }
 
 
-if( !Function.prototype.bind ) {
-  Function.prototype.bind = function( ctx ) {
-
-    var fn = this, args = Array.prototype.slice.call( arguments, 1 );
-
-    return function() {
-      fn.apply( ctx, args );
-    };
-  };
-}
-
 if( !Object.assign ) {
   Object.assign = function( obj/*, srcObjs*/ ) {
 
-    if( obj !== Object( obj ) ) throw new TypeError( 'Object.keys called on a non-object' );
+    if( obj !== Object( obj ) ) throw new TypeError( 'Object.assign called on a non-object' );
 
     var resultObj, tmpSource, keysArr, i, l, j, k, tmpKey;
 
@@ -119,6 +108,17 @@ if( !Object.keys ) {
     }
 
     return keysArr;
+  };
+}
+
+if( !Function.prototype.bind ) {
+  Function.prototype.bind = function( ctx ) {
+
+    var fn = this, args = Array.prototype.slice.call( arguments, 1 );
+
+    return function() {
+      fn.apply( ctx, args );
+    };
   };
 }
 
